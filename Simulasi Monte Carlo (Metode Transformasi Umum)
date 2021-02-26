@@ -1,0 +1,33 @@
+getwd()
+setwd("D:\\R Project")
+ls()
+rm(list=ls(all=TRUE))
+
+#=================Metode Transformasi Umum==================
+#======Membangkitkan n bilangan acak normal baku (0,1)======
+set.seed(22)
+n <- 5000
+x <- rnorm(5000,0,1)
+v <- 5
+
+#=Mendefinisikan fungsi pembangkit Gamma dengan parameter v=
+f <- function(v){
+  n <- n
+  if(v>0){
+    rgamma(n,v/2,1/2)
+    }
+  else{print("Nilai v tidak memenuhi syarat")}
+}
+
+#=======Membangkitkan n bilangan acak Gamma(v=5)=========
+y <- f(v)
+
+#===============Mendefinisikan Transformasi Z===============
+g <- function(v){
+  x/sqrt(y/v)
+  }
+z <- g(v)
+
+#=================Plot Histogram dan Kurva==================
+hist(z,breaks = "Scott",col="paleturquoise2",main="Histogram Z",xlab="Z",prob = T)
+curve(dt(x,v),col="darkorchid4",lwd=2,add=TRUE)
