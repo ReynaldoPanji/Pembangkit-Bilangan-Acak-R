@@ -1,0 +1,23 @@
+getwd()
+setwd("D:\\R Project")
+ls()
+rm(list=ls(all=TRUE))
+
+#==============Metode Transformasi Invers================
+#====Membangkitkan n bilangan acak uniform pada (0,1)====
+n <- 10000
+u <- runif(n)
+
+#===============Mengembalikan kepada invers==============
+library(GoFKernel)
+f <- function(u){1/4*u+2/4*u^4+1/4*u^5}
+p <- inverse(f)
+N <- 10000
+x <- numeric(N)
+for (i in 1:N){
+  x[i] <- p(u[i])
+}
+
+#================Plot Histogram dan Kurva================
+hist(x,breaks = "Scott",col="violetred2",main="Histogram X",xlab="X",prob = T)
+curve(1/4+2*x^3+5/4*x^4,col="black",lwd=3,add=TRUE)
