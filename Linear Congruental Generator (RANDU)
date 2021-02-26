@@ -1,0 +1,21 @@
+getwd()
+setwd("D:\\R Project")
+ls()
+rm(list=ls(all=TRUE))
+
+#======================Fungsi LCG========================
+RANDU.RNG <- function(n,seed=7){
+  x <- 7
+  a <- 7
+  c <- 7
+  m <- 10
+  for(i in 1:n){
+    seed = (a*seed + c) %% m
+    x[i] = seed 
+  }
+  x
+}
+
+#=================Pembangkit n Bilangan==================
+n <- 1000
+RANDU.RNG(n)
